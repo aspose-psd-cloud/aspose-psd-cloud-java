@@ -78,16 +78,6 @@ public abstract class ApiTester
     protected static List<StorageFile> InputTestFiles;
 
     /**
-     * Basic input test files info
-     */
-    protected static List<StorageFile> BasicInputTestFiles;
-
-    /**
-     * Multipage input test files info
-     */
-    protected static List<StorageFile> MultipageInputTestFiles;
-
-    /**
      * Aspose.Imaging API
      */
     protected static com.aspose.psd.cloud.sdk.api.PsdApi ImagingApi;
@@ -290,14 +280,6 @@ public abstract class ApiTester
         }
         
         InputTestFiles = fetchInputTestFilesInfo();
-        BasicInputTestFiles = new ArrayList<StorageFile>();
-        MultipageInputTestFiles = new ArrayList<StorageFile>();
-        for (StorageFile file: InputTestFiles){
-            if (file.getName().startsWith("multipage_"))
-                MultipageInputTestFiles.add(file);
-            else
-                BasicInputTestFiles.add(file);
-        }
     }
 
     /**
@@ -538,7 +520,11 @@ public abstract class ApiTester
     private static List<StorageFile> fetchInputTestFilesInfo() throws Exception
     {
         FilesList filesResponse = ImagingApi.getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage));
-        return filesResponse.getValue();
+        List<StorageFile> result = new ArrayList<StorageFile>();
+        for (StorageFile storageFile : filesResponse.getValue())
+            if (!storageFile.getName().startsWith("multipage_") && storageFile.getName().endsWith("psd"))
+                result.add(storageFile);
+        return result;
     }
 
     /**
@@ -637,7 +623,6 @@ public abstract class ApiTester
 
         try
         {
-            System.out.println(parametersLine);
 
             if (saveResultToStorage)
             {

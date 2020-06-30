@@ -94,7 +94,7 @@ public class CropApiTests extends ApiTester {
             }
         }
 
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
             for (String format : formatsToExport) {
                 cropImageRequest = new CropImageRequest(inputFile.getName(), x, y, width, height, format, folder, storage);
 
@@ -140,7 +140,7 @@ public class CropApiTests extends ApiTester {
             }
         }
 
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
 
             for (String format : formatsToExport) {
                 createCroppedImageRequest = new CreateCroppedImageRequest(imageData, x, y, width, height, format, outPath, storage);

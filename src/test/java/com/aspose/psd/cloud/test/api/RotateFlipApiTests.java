@@ -117,7 +117,7 @@ public class RotateFlipApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {
@@ -175,7 +175,7 @@ public class RotateFlipApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {

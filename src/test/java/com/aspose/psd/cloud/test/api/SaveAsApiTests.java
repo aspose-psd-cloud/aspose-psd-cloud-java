@@ -115,7 +115,7 @@ public class SaveAsApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {
@@ -172,7 +172,7 @@ public class SaveAsApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {

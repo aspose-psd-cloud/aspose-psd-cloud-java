@@ -118,7 +118,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {
@@ -177,7 +177,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
         
-        for (StorageFile inputFile : BasicInputTestFiles)
+        for (StorageFile inputFile : InputTestFiles)
         {
             if (inputFile.getName().endsWith(formatExtension))
             {
