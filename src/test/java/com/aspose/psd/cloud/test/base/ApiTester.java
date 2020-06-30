@@ -132,8 +132,7 @@ public abstract class ApiTester
          "jpg",
          "png",
          "psd",
-         "tiff",
-         "webp"
+         "tiff"
     };
 
     /**
