@@ -164,7 +164,9 @@
                     <additionalparam>${javadoc.opts}</additionalparam>
                 </configuration>
                 -->
-                
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
                 
                 <executions>
                     <execution>
