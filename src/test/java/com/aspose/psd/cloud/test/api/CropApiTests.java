@@ -53,8 +53,8 @@ public class CropApiTests extends ApiTester {
     private CreateCroppedImageRequest createCroppedImageRequest;
 
     @Parameters
-    public static Iterable<Object> data() {
-        return Arrays.asList(new Object[]{ true, false });
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][]{ {true, new String[] {null}}, {false, new String[] {null}} });
     }
 
     private Boolean saveResultToStorage;
