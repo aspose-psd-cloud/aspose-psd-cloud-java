@@ -106,15 +106,9 @@ public class Configuration
         /**
          * Set Aspose Cloud API base URL.
          * @param value
-         * @throws Exception 
          */
-        public void setApiVersion(String value) throws Exception
+        public void setApiVersion(String value)
         {
-            if (value.startsWith("v1") || value.startsWith("v2"))
-            {
-                throw new Exception("This SDK is intended to be used only with API v3 and higher due to breaking changes!");
-            }
-            
             this.apiVersion = value;
         }
         
