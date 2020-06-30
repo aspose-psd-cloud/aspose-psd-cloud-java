@@ -2,25 +2,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aspose</groupId>
-    <artifactId>aspose-imaging-cloud</artifactId>
+    <artifactId>aspose-psd-cloud</artifactId>
     <packaging>jar</packaging>
-    <name>Aspose.Imaging Cloud Java SDK</name>
+    <name>Aspose.PSD Cloud Java SDK</name>
     <version>${releaseVersion}</version>
-    <url>https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-java</url>
-    <description>Aspose.Imaging Cloud Java SDK</description>
+    <url>https://github.com/aspose-psd-cloud/aspose-psd-cloud-java</url>
+    <description>Aspose.PSD Cloud Java SDK</description>
     
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-java/blob/master/LICENSE</url>
+            <url>https://github.com/aspose-psd-cloud/aspose-psd-cloud-java/blob/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     
     <scm>
-        <connection>scm:git:git://github.com/aspose-imaging-cloud/aspose-imaging-cloud-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com:aspose-imaging-cloud/aspose-imaging-cloud-java.git</developerConnection>
-        <url>https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-java</url>
+        <connection>scm:git:git://github.com/aspose-psd-cloud/aspose-psd-cloud-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:aspose-psd-cloud/aspose-psd-cloud-java.git</developerConnection>
+        <url>https://github.com/aspose-psd-cloud/aspose-psd-cloud-java</url>
     </scm>
     
     <organization>
