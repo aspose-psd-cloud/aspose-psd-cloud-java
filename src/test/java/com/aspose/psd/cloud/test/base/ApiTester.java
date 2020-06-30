@@ -621,6 +621,7 @@ public abstract class ApiTester
                              String folder, String storage) throws Exception
     {
         System.out.println("Test method: " + testMethodName);
+        System.out.println(parametersLine);
 
         if (!checkInputFileExists(inputFileName))
         {
