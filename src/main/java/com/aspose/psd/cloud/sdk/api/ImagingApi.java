@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="PsdApi.java">
+* <copyright company="Aspose" file="ImagingApi.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -32,7 +32,6 @@ import com.aspose.psd.cloud.sdk.invoker.*;
 import com.aspose.psd.cloud.sdk.invoker.internal.*;
 import com.aspose.psd.cloud.sdk.invoker.internal.requesthandlers.*;
 import com.aspose.psd.cloud.sdk.model.requests.*;
-import com.aspose.psd.cloud.sdk.stablemodel.*;
 
 import java.io.File;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ import java.util.HashMap;
 /**
  * Aspose.Psd Cloud API
  */
-public class PsdApi
+public class ImagingApi 
 {
     /**
      * Current SDK version
@@ -58,88 +57,88 @@ public class PsdApi
     private ApiInvoker apiInvoker;
        
     /**
-     * Initializes a new instance of the PsdApi class for on-premise deployment service usage.
+     * Initializes a new instance of the ImagingApi class for on-premise deployment service usage.
      *  @param baseUrl The base URL.
      */
-    public PsdApi(String baseUrl)
+    public ImagingApi(String baseUrl)
     {
         Configuration config = new Configuration();
         config.setApiBaseUrl(baseUrl);
         config.OnPremise = true;
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
 
     /**
-     * Initializes a new instance of the PsdApi class for Aspose Cloud-hosted service usage.
+     * Initializes a new instance of the ImagingApi class for Aspose Cloud-hosted service usage.
      * @param appKey The app key.
      * @param appSid The app SID.
      */
-    public PsdApi(String appKey, String appSid)
+    public ImagingApi(String appKey, String appSid)
     {
         Configuration config = new Configuration();
         config.AppKey = appKey;
         config.AppSid = appSid;
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
     
     /**
-     * Initializes a new instance of the PsdApi class for on-premise deployment service usage.
+     * Initializes a new instance of the ImagingApi class for on-premise deployment service usage.
      *  @param baseUrl The base URL.
      *  @param apiVersion API version.
-     *  @param debug If debug mode is enabled.
+     *  @param debugMode If debug mode is enabled.
      * @throws Exception 
      */
-    public PsdApi(String baseUrl, String apiVersion, Boolean debugMode) throws Exception
+    public ImagingApi(String baseUrl, String apiVersion, Boolean debugMode) throws Exception
     {
         Configuration config = new Configuration();
         config.setApiBaseUrl(baseUrl);
         config.setApiVersion(apiVersion);
         config.setDebugMode(debugMode);
         config.OnPremise = true;
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
 
     /**
-     * Initializes a new instance of the PsdApi class for Aspose Cloud-hosted service usage.
+     * Initializes a new instance of the ImagingApi class for Aspose Cloud-hosted service usage.
      * @param appKey The app key.
      * @param appSid The app SID.
      * @param baseUrl The base URL.
      */
-    public PsdApi(String appKey, String appSid, String baseUrl)
+    public ImagingApi(String appKey, String appSid, String baseUrl)
     {
         Configuration config = new Configuration();
         config.AppKey = appKey;
         config.AppSid = appSid;
         config.setApiBaseUrl(baseUrl);
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
 
     /**
-     * Initializes a new instance of the PsdApi class for Aspose Cloud-hosted service usage.
+     * Initializes a new instance of the ImagingApi class for Aspose Cloud-hosted service usage.
      * @param appKey The app key.
      * @param appSid The app SID.
      * @param baseUrl The base URL.
      * @param apiVersion API version.
      */
-    public PsdApi(String appKey, String appSid, String baseUrl, String apiVersion) throws Exception
+    public ImagingApi(String appKey, String appSid, String baseUrl, String apiVersion) throws Exception
     {
         Configuration config = new Configuration();
         config.AppKey = appKey;
         config.AppSid = appSid;
         config.setApiBaseUrl(baseUrl);
         config.setApiVersion(apiVersion);
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
 
     /**
-     * Initializes a new instance of the PsdApi class for Aspose Cloud-hosted service usage.
+     * Initializes a new instance of the ImagingApi class for Aspose Cloud-hosted service usage.
      * @param appKey The app key.
      * @param appSid The app SID.
      * @param baseUrl The base URL.
      * @param apiVersion API version.
      * @param debug If debug mode is enabled.
      */
-    public PsdApi(String appKey, String appSid, String baseUrl, String apiVersion, Boolean debug) throws Exception
+    public ImagingApi(String appKey, String appSid, String baseUrl, String apiVersion, Boolean debug) throws Exception
     {
         Configuration config = new Configuration();
         config.AppKey = appKey;
@@ -147,14 +146,14 @@ public class PsdApi
         config.setApiBaseUrl(baseUrl);
         config.setApiVersion(apiVersion);
         config.setDebugMode(debug);
-        this.initPsdApi(config);
+        this.initImagingApi(config);
     }
     
     /**
-     * Initializes a new instance of the PsdApi class.
+     * Initializes a new instance of the ImagingApi class.
      * @param configuration Configuration settings.
      */
-    private void initPsdApi(Configuration configuration)
+    private void initImagingApi(Configuration configuration)
     {
         this.Configuration = configuration;
         int handlersCount = configuration.OnPremise ? 2 : 3;

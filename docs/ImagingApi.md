@@ -1,4 +1,4 @@
-# com.aspose.psd.cloud.sdk.api.PsdApi
+# com.aspose.psd.cloud.sdk.api.ImagingApi
 
 <a name="copyFile"></a>
 ## **copyFile**

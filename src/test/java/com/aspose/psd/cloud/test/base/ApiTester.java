@@ -80,7 +80,7 @@ public abstract class ApiTester
     /**
      * Aspose.Imaging API
      */
-    protected static com.aspose.psd.cloud.sdk.api.PsdApi ImagingApi;
+    protected static com.aspose.psd.cloud.sdk.api.ImagingApi ImagingApi;
 
     /**
      * The server access file
@@ -272,11 +272,11 @@ public abstract class ApiTester
 
         if (!onPremise)
         {
-            ImagingApi = new com.aspose.psd.cloud.sdk.api.PsdApi(appKey, appSid, baseUrl, apiVersion);
+            ImagingApi = new com.aspose.psd.cloud.sdk.api.ImagingApi(appKey, appSid, baseUrl, apiVersion);
         }
         else
         {
-            ImagingApi = new com.aspose.psd.cloud.sdk.api.PsdApi(baseUrl, apiVersion, false);
+            ImagingApi = new com.aspose.psd.cloud.sdk.api.ImagingApi(baseUrl, apiVersion, false);
         }
         
         InputTestFiles = fetchInputTestFilesInfo();
