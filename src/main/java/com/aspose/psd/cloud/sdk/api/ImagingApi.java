@@ -32,6 +32,7 @@ import com.aspose.psd.cloud.sdk.invoker.*;
 import com.aspose.psd.cloud.sdk.invoker.internal.*;
 import com.aspose.psd.cloud.sdk.invoker.internal.requesthandlers.*;
 import com.aspose.psd.cloud.sdk.model.requests.*;
+import com.aspose.psd.cloud.sdk.stablemodel.*;
 
 import java.io.File;
 import java.util.HashMap;
@@ -85,7 +86,7 @@ public class ImagingApi
      * Initializes a new instance of the ImagingApi class for on-premise deployment service usage.
      *  @param baseUrl The base URL.
      *  @param apiVersion API version.
-     *  @param debugMode If debug mode is enabled.
+     *  @param debug If debug mode is enabled.
      * @throws Exception 
      */
     public ImagingApi(String baseUrl, String apiVersion, Boolean debugMode) throws Exception
