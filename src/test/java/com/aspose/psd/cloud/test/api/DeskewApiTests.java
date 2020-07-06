@@ -193,7 +193,7 @@ public class DeskewApiTests extends ApiTester {
         deskewImageRequest.name = name;
         deskewImageRequest.resizeProportionally = this.resizeProportionally;
         deskewImageRequest.bkColor = this.bkColor;
-        return ImagingApi.deskewImage(deskewImageRequest);
+        return PsdApi.deskewImage(deskewImageRequest);
     }
     
     /**
@@ -209,7 +209,7 @@ public class DeskewApiTests extends ApiTester {
         createDeskewedImageRequest.outPath = outPath;
         createDeskewedImageRequest.resizeProportionally = this.resizeProportionally;
         createDeskewedImageRequest.bkColor = this.bkColor;
-        return ImagingApi.createDeskewedImage(createDeskewedImageRequest);
+        return PsdApi.createDeskewedImage(createDeskewedImageRequest);
     }
     
     /**

@@ -221,7 +221,7 @@ public class ResizeApiTests extends ApiTester {
     private byte[] resizeImageGetRequestInvoker(String name) throws Exception
     {
         resizeImageRequest.name = name;
-        return ImagingApi.resizeImage(resizeImageRequest);
+        return PsdApi.resizeImage(resizeImageRequest);
     }
     
     /**
@@ -235,7 +235,7 @@ public class ResizeApiTests extends ApiTester {
     {
         createResizedImageRequest.imageData = imageData;
         createResizedImageRequest.outPath = outPath;
-        return ImagingApi.createResizedImage(createResizedImageRequest);
+        return PsdApi.createResizedImage(createResizedImageRequest);
     }
     
     /**

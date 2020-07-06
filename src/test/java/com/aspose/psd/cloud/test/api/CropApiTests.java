@@ -171,7 +171,7 @@ public class CropApiTests extends ApiTester {
     private byte[] cropImageGetRequestInvoker(String name) throws Exception
     {
         cropImageRequest.name = name;
-        return ImagingApi.cropImage(cropImageRequest);
+        return PsdApi.cropImage(cropImageRequest);
     }
     
     /**
@@ -185,7 +185,7 @@ public class CropApiTests extends ApiTester {
     {
         createCroppedImageRequest.imageData = imageData;
         createCroppedImageRequest.outPath = outPath;
-        return ImagingApi.createCroppedImage(createCroppedImageRequest);
+        return PsdApi.createCroppedImage(createCroppedImageRequest);
     }
     
     /**

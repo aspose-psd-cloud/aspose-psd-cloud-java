@@ -216,7 +216,7 @@ public class SaveAsApiTests extends ApiTester {
     private byte[] saveImageAsGetRequestInvoker(String name) throws Exception
     {
         saveImageAsRequest.name = name;
-        return ImagingApi.saveImageAs(saveImageAsRequest);
+        return PsdApi.saveImageAs(saveImageAsRequest);
     }
     
     /**
@@ -230,7 +230,7 @@ public class SaveAsApiTests extends ApiTester {
     {
         createSavedImageAsRequest.imageData = imageData;
         createSavedImageAsRequest.outPath = outPath;
-        return ImagingApi.createSavedImageAs(createSavedImageAsRequest);
+        return PsdApi.createSavedImageAs(createSavedImageAsRequest);
     }
     
     /**

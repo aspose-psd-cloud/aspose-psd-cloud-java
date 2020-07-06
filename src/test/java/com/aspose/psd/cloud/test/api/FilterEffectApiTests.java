@@ -206,6 +206,6 @@ public class FilterEffectApiTests extends ApiTester {
     private byte[] filterEffectRequestInvoker(String name) throws Exception
     {
         filterEffectImageRequest.name = name;
-        return ImagingApi.filterEffectImage(filterEffectImageRequest);
+        return PsdApi.filterEffectImage(filterEffectImageRequest);
     }
 }

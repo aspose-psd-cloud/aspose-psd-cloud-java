@@ -45,7 +45,7 @@ public class StorageApiTests extends StorageApiTester {
     @Ignore("IMAGINGCLOUD-292")
     public void getDiscUsageTest() throws Exception {
         try {
-            DiscUsage discUsage = ImagingApi.getDiscUsage(new GetDiscUsageRequest(TestStorage));
+            DiscUsage discUsage = PsdApi.getDiscUsage(new GetDiscUsageRequest(TestStorage));
             Assert.assertTrue(discUsage.getUsedSize() < discUsage.getTotalSize());
         } catch (ApiException ex) {
             Assert.assertTrue(ex.errorCode == 501);
@@ -54,13 +54,13 @@ public class StorageApiTests extends StorageApiTester {
 
     @Test
     public void storageExistsTest() throws Exception {
-        StorageExist storageExists = ImagingApi.storageExists(new StorageExistsRequest(TestStorage));
+        StorageExist storageExists = PsdApi.storageExists(new StorageExistsRequest(TestStorage));
         Assert.assertTrue(storageExists.isExists());
     }
 
     @Test
     public void storageDoesNotExistTest() throws Exception {
-        StorageExist storageExists = ImagingApi.storageExists(new StorageExistsRequest("NotExistingStorage"));
+        StorageExist storageExists = PsdApi.storageExists(new StorageExistsRequest("NotExistingStorage"));
         Assert.assertFalse(storageExists.isExists());
     }
 }

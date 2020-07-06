@@ -50,20 +50,20 @@ public class FolderApiTests extends StorageApiTester {
     public void createFolderTest() throws Exception {
         String folder = getTempFolder() + "/DummyFolder";
         try {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
 
-            ImagingApi.createFolder(new CreateFolderRequest(folder, TestStorage));
-            Assert.assertTrue(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            PsdApi.createFolder(new CreateFolderRequest(folder, TestStorage));
+            Assert.assertTrue(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
         } finally {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
         }
     }
 
@@ -71,17 +71,17 @@ public class FolderApiTests extends StorageApiTester {
     public void copyFolderTest() throws Exception {
         String folder = getTempFolder() + "/Storage";
         try {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
 
-            ImagingApi.copyFolder(new CopyFolderRequest(OriginalDataFolder, folder, TestStorage, TestStorage));
-            Assert.assertTrue(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
-            List<StorageFile> originalFiles = ImagingApi
+            PsdApi.copyFolder(new CopyFolderRequest(OriginalDataFolder, folder, TestStorage, TestStorage));
+            Assert.assertTrue(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            List<StorageFile> originalFiles = PsdApi
                     .getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage)).getValue();
-            List<StorageFile> copiedFiles = ImagingApi.getFilesList(new GetFilesListRequest(folder, TestStorage))
+            List<StorageFile> copiedFiles = PsdApi.getFilesList(new GetFilesListRequest(folder, TestStorage))
                     .getValue();
             Assert.assertTrue(originalFiles.size() > 0);
             Assert.assertTrue(copiedFiles.size() > 0);
@@ -91,11 +91,11 @@ public class FolderApiTests extends StorageApiTester {
                 Assert.assertTrue(equalFileIsInList(originalFiles.get(x), copiedFiles));
             }
         } finally {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
         }
     }
 
@@ -104,30 +104,30 @@ public class FolderApiTests extends StorageApiTester {
         String tmpFolder = getTempFolder() + "/Temp";
         String folder = getTempFolder() + "/Storage";
         try {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            if (ImagingApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(tmpFolder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(tmpFolder, TestStorage, true));
             }
 
             Assert.assertFalse(
-                    ImagingApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+                    PsdApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
 
-            ImagingApi.copyFolder(new CopyFolderRequest(OriginalDataFolder, tmpFolder, TestStorage, TestStorage));
+            PsdApi.copyFolder(new CopyFolderRequest(OriginalDataFolder, tmpFolder, TestStorage, TestStorage));
             Assert.assertTrue(
-                    ImagingApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
+                    PsdApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
 
-            ImagingApi.moveFolder(new MoveFolderRequest(tmpFolder, folder, TestStorage, TestStorage));
+            PsdApi.moveFolder(new MoveFolderRequest(tmpFolder, folder, TestStorage, TestStorage));
             Assert.assertFalse(
-                    ImagingApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
-            Assert.assertTrue(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+                    PsdApi.objectExists(new ObjectExistsRequest(tmpFolder, TestStorage, null)).isExists());
+            Assert.assertTrue(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
 
-            List<StorageFile> originalFiles = ImagingApi
+            List<StorageFile> originalFiles = PsdApi
                     .getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage)).getValue();
-            List<StorageFile> copiedFiles = ImagingApi.getFilesList(new GetFilesListRequest(folder, TestStorage))
+            List<StorageFile> copiedFiles = PsdApi.getFilesList(new GetFilesListRequest(folder, TestStorage))
                     .getValue();
             Assert.assertTrue(originalFiles.size() > 0);
             Assert.assertTrue(copiedFiles.size() > 0);
@@ -137,17 +137,17 @@ public class FolderApiTests extends StorageApiTester {
                 Assert.assertTrue(equalFileIsInList(originalFiles.get(x), copiedFiles));
             }
         } finally {
-            if (ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
-                ImagingApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
+            if (PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists()) {
+                PsdApi.deleteFolder(new DeleteFolderRequest(folder, TestStorage, true));
             }
 
-            Assert.assertFalse(ImagingApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
+            Assert.assertFalse(PsdApi.objectExists(new ObjectExistsRequest(folder, TestStorage, null)).isExists());
         }
     }
 
     @Test
     public void filesListTest() throws Exception {
-        List<StorageFile> files = ImagingApi.getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage))
+        List<StorageFile> files = PsdApi.getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage))
                 .getValue();
         Assert.assertEquals(3, files.size());
         StorageFile folder1 = getFileWithName(files, "Folder1");
@@ -165,7 +165,7 @@ public class FolderApiTests extends StorageApiTester {
         Assert.assertEquals(storageFile.getSize(),
                 new Long((long) (StringUtils.strip(storageFile.getPath(), "/").length())));
 
-        files = ImagingApi
+        files = PsdApi
                 .getFilesList(new GetFilesListRequest(OriginalDataFolder + "/" + folder1.getName(), TestStorage))
                 .getValue();
         Assert.assertEquals(1, files.size());
@@ -176,7 +176,7 @@ public class FolderApiTests extends StorageApiTester {
         Assert.assertEquals(folder1File.getSize(),
                 new Long((long) (StringUtils.strip(folder1File.getPath(), "/").length())));
 
-        files = ImagingApi
+        files = PsdApi
                 .getFilesList(new GetFilesListRequest(OriginalDataFolder + "/" + folder2.getName(), TestStorage))
                 .getValue();
         Assert.assertEquals(2, files.size());
@@ -191,7 +191,7 @@ public class FolderApiTests extends StorageApiTester {
         Assert.assertTrue(folder3.isIsFolder());
         Assert.assertTrue(StringUtils.strip(folder3.getPath(), "/").endsWith(folder3.getName()));
 
-        files = ImagingApi
+        files = PsdApi
                 .getFilesList(new GetFilesListRequest(
                         OriginalDataFolder + "/" + folder2.getName() + "/" + folder3.getName(), TestStorage))
                 .getValue();

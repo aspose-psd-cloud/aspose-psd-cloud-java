@@ -165,7 +165,7 @@ public class GrayscaleApiTests extends ApiTester {
     private byte[] grayscaleImageGetRequestInvoker(String name) throws Exception
     {
         grayscaleImageRequest.name = name;
-        return ImagingApi.grayscaleImage(grayscaleImageRequest);
+        return PsdApi.grayscaleImage(grayscaleImageRequest);
     }
 
     /**
@@ -179,7 +179,7 @@ public class GrayscaleApiTests extends ApiTester {
     {
         createGrayscaledImageRequest.imageData = imageData;
         createGrayscaledImageRequest.outPath = outPath;
-        return ImagingApi.createGrayscaledImage(createGrayscaledImageRequest);
+        return PsdApi.createGrayscaledImage(createGrayscaledImageRequest);
     }
 
     /**

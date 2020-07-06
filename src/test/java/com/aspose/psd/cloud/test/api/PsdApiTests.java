@@ -143,7 +143,7 @@ public class PsdApiTests extends ApiTester {
     private byte[] modifyPsdGetRequestInvoker(String name) throws Exception
     {
         modifyPsdRequest.name = name;
-        return ImagingApi.modifyPsd(modifyPsdRequest);
+        return PsdApi.modifyPsd(modifyPsdRequest);
     }
     
     /**
@@ -157,7 +157,7 @@ public class PsdApiTests extends ApiTester {
     {
         createModifiedPsdRequest.imageData = imageData;
         createModifiedPsdRequest.outPath = outPath;
-        return ImagingApi.createModifiedPsd(createModifiedPsdRequest);
+        return PsdApi.createModifiedPsd(createModifiedPsdRequest);
     }
     
     /**

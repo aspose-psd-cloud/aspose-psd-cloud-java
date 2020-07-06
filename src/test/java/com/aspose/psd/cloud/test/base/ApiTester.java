@@ -80,7 +80,7 @@ public abstract class ApiTester
     /**
      * Aspose.Imaging API
      */
-    protected static com.aspose.psd.cloud.sdk.api.ImagingApi ImagingApi;
+    protected static com.aspose.psd.cloud.sdk.api.PsdApi PsdApi;
 
     /**
      * The server access file
@@ -161,9 +161,9 @@ public abstract class ApiTester
     @AfterClass
     public static void finalizeTester() throws Exception
     {
-        if (!failedAnyTest && RemoveResult && ImagingApi.objectExists(new ObjectExistsRequest(getTempFolder(), TestStorage, null)).isExists())
+        if (!failedAnyTest && RemoveResult && PsdApi.objectExists(new ObjectExistsRequest(getTempFolder(), TestStorage, null)).isExists())
         {
-            ImagingApi.deleteFolder(new DeleteFolderRequest(getTempFolder(), TestStorage, true));
+            PsdApi.deleteFolder(new DeleteFolderRequest(getTempFolder(), TestStorage, true));
         }
     }
     
@@ -272,11 +272,11 @@ public abstract class ApiTester
 
         if (!onPremise)
         {
-            ImagingApi = new com.aspose.psd.cloud.sdk.api.ImagingApi(appKey, appSid, baseUrl, apiVersion);
+            PsdApi = new com.aspose.psd.cloud.sdk.api.PsdApi(appKey, appSid, baseUrl, apiVersion);
         }
         else
         {
-            ImagingApi = new com.aspose.psd.cloud.sdk.api.ImagingApi(baseUrl, apiVersion, false);
+            PsdApi = new com.aspose.psd.cloud.sdk.api.PsdApi(baseUrl, apiVersion, false);
         }
         
         InputTestFiles = fetchInputTestFilesInfo();
@@ -314,7 +314,7 @@ public abstract class ApiTester
      */
     protected static FilesList getStorageFolderInfo(String folder, String storage) throws Exception
     {
-        return ImagingApi.getFilesList(new GetFilesListRequest(folder, storage));
+        return PsdApi.getFilesList(new GetFilesListRequest(folder, storage));
     }
 
     /**
@@ -505,10 +505,10 @@ public abstract class ApiTester
      */
     protected void copyInputFileToFolder(String inputFileName, String folder, String storage) throws Exception
     {
-        if (!ImagingApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists())
+        if (!PsdApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists())
         {
-            ImagingApi.copyFile(new CopyFileRequest(OriginalDataFolder + "/" + inputFileName, folder + "/" + inputFileName, storage, storage, null));
-            Assert.assertTrue(ImagingApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists());
+            PsdApi.copyFile(new CopyFileRequest(OriginalDataFolder + "/" + inputFileName, folder + "/" + inputFileName, storage, storage, null));
+            Assert.assertTrue(PsdApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists());
         }
     }
 
@@ -519,7 +519,7 @@ public abstract class ApiTester
      */
     private static List<StorageFile> fetchInputTestFilesInfo() throws Exception
     {
-        FilesList filesResponse = ImagingApi.getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage));
+        FilesList filesResponse = PsdApi.getFilesList(new GetFilesListRequest(OriginalDataFolder, TestStorage));
         List<StorageFile> result = new ArrayList<StorageFile>();
         for (StorageFile storageFile : filesResponse.getValue())
             if (!storageFile.getName().startsWith("multipage_") && storageFile.getName().endsWith("psd"))
@@ -558,7 +558,7 @@ public abstract class ApiTester
      */
     private byte[] obtainPostResponse(String inputPath, String outPath, String storage, Method requestInvoker) throws Exception
     {
-        byte[] downBytes = ImagingApi.downloadFile(new DownloadFileRequest(inputPath, storage, null));
+        byte[] downBytes = PsdApi.downloadFile(new DownloadFileRequest(inputPath, storage, null));
         Object responseObject = requestInvoker.invoke(this, downBytes, outPath);
         Assert.assertNotNull(responseObject);
         byte[] result = (byte[])responseObject;
@@ -628,9 +628,9 @@ public abstract class ApiTester
             {
                 outPath = folder + "/" + resultFileName;
                 // remove output file from the storage (if exists)
-                if (ImagingApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
+                if (PsdApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
                 {
-                    ImagingApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
+                    PsdApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
                 }
             }
 
@@ -647,20 +647,20 @@ public abstract class ApiTester
                                     resultFileName, folder));
                 }
                 if (!resultFileName.endsWith(".pdf")) {
-                    resultProperties = ImagingApi.getImageProperties(new GetImagePropertiesRequest(resultFileName, folder, storage));
+                    resultProperties = PsdApi.getImageProperties(new GetImagePropertiesRequest(resultFileName, folder, storage));
                     Assert.assertNotNull(resultProperties);
                 }
             }
             else if (!(new Tika().detect(response).equals("application/pdf")))
             {
                 resultProperties =
-                        ImagingApi.extractImageProperties(new ExtractImagePropertiesRequest(response));
+                        PsdApi.extractImageProperties(new ExtractImagePropertiesRequest(response));
                 Assert.assertNotNull(resultProperties);
             }
             
-            Assert.assertTrue(ImagingApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists());
+            Assert.assertTrue(PsdApi.objectExists(new ObjectExistsRequest(folder + "/" + inputFileName, storage, null)).isExists());
             ImagingResponse originalProperties =
-                    ImagingApi.getImageProperties(new GetImagePropertiesRequest(inputFileName, folder, storage));
+                    PsdApi.getImageProperties(new GetImagePropertiesRequest(inputFileName, folder, storage));
             Assert.assertNotNull(originalProperties);
 
             if (resultProperties != null && propertiesTester != null)
@@ -678,9 +678,9 @@ public abstract class ApiTester
         }
         finally
         {
-            if (passed && saveResultToStorage && RemoveResult && ImagingApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
+            if (passed && saveResultToStorage && RemoveResult && PsdApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
             {
-                ImagingApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
+                PsdApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
             }
 
             System.out.println("Test passed: " + passed);

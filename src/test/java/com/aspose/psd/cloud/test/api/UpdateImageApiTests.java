@@ -234,7 +234,7 @@ public class UpdateImageApiTests extends ApiTester {
     private byte[] updateImageGetRequestInvoker(String name) throws Exception
     {
         updateImageRequest.name = name;
-        return ImagingApi.updateImage(updateImageRequest);
+        return PsdApi.updateImage(updateImageRequest);
     }
     
     /**
@@ -248,7 +248,7 @@ public class UpdateImageApiTests extends ApiTester {
     {
         createUpdatedImageRequest.imageData = imageData;
         createUpdatedImageRequest.outPath = outPath;
-        return ImagingApi.createUpdatedImage(createUpdatedImageRequest);
+        return PsdApi.createUpdatedImage(createUpdatedImageRequest);
     }
     
     /**

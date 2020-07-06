@@ -219,7 +219,7 @@ public class RotateFlipApiTests extends ApiTester {
     private byte[] rotateFlipImageGetRequestInvoker(String name) throws Exception
     {
         rotateFlipImageRequest.name = name;
-        return ImagingApi.rotateFlipImage(rotateFlipImageRequest);
+        return PsdApi.rotateFlipImage(rotateFlipImageRequest);
     }
     
     /**
@@ -233,7 +233,7 @@ public class RotateFlipApiTests extends ApiTester {
     {
         createRotateFlippedImageRequest.imageData = imageData;
         createRotateFlippedImageRequest.outPath = outPath;
-        return ImagingApi.createRotateFlippedImage(createRotateFlippedImageRequest);
+        return PsdApi.createRotateFlippedImage(createRotateFlippedImageRequest);
     }
     
     /**
