@@ -51,18 +51,16 @@ public class GrayscaleApiTests extends ApiTester {
     private CreateGrayscaledImageRequest createGrayscaledImageRequest;
 
     @Parameters
-    public static Iterable<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                { ".jpg", true }, { ".jpg", false }
-        });
+    public static Iterable<Object> data() {
+        return Arrays.asList(new Object[]{
+                true, false}
+        );
     }
 
-    private String formatExtension;
     private Boolean saveResultToStorage;
 
-    public GrayscaleApiTests(String extension, Boolean saveResult)
+    public GrayscaleApiTests(Boolean saveResult)
     {
-        this.formatExtension = extension;
         this.saveResultToStorage = saveResult;
     }
 
@@ -75,27 +73,15 @@ public class GrayscaleApiTests extends ApiTester {
     @Test
     public void grayscalemageTest() throws Exception {
 
-        if (saveResultToStorage)
-        {
+        if (saveResultToStorage) {
             return;
         }
 
-        String name = null;
         String folder = getTempFolder();
         String storage = TestStorage;
 
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-
-            grayscaleImageRequest = new GrayscaleImageRequest(name, folder, storage);
+        for (StorageFile inputFile : InputTestFiles) {
+            grayscaleImageRequest = new GrayscaleImageRequest(inputFile.getName(), folder, storage);
 
             Method propertiesTester = GrayscaleApiTests.class.getDeclaredMethod("grayscaleImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
             propertiesTester.setAccessible(true);
@@ -103,9 +89,9 @@ public class GrayscaleApiTests extends ApiTester {
             requestInvoker.setAccessible(true);
             this.testGetRequest(
                     "grayscaleImageTest",
-                    String.format("Input image: %s; Output format: %s;",
-                            name, formatExtension),
-                    name,
+                    String.format("Input image: %s;",
+                            inputFile.getName()),
+                    inputFile.getName(),
                     requestInvoker,
                     propertiesTester,
                     folder,
@@ -122,21 +108,14 @@ public class GrayscaleApiTests extends ApiTester {
     @Test
     public void createGrayscaledImageTest() throws Exception {
         byte[] imageData = null;
-        String name = null;
         String outPath = null;
         String folder = getTempFolder();
         String storage = TestStorage;
         String outName = null;
 
         for (StorageFile inputFile : InputTestFiles) {
-            if (inputFile.getName().endsWith(formatExtension)) {
-                name = inputFile.getName();
-            } else {
-                continue;
-            }
-
             createGrayscaledImageRequest = new CreateGrayscaledImageRequest(imageData, outPath, storage);
-            outName = name + "_grayscale" + formatExtension;
+            outName = inputFile.getName() + "_grayscale.psd";
 
             Method propertiesTester = GrayscaleApiTests.class.getDeclaredMethod("createGrayscaledImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
             propertiesTester.setAccessible(true);
@@ -145,9 +124,9 @@ public class GrayscaleApiTests extends ApiTester {
             this.testPostRequest(
                     "createGrayscaledImageTest; save result to storage: " + saveResultToStorage,
                     saveResultToStorage,
-                    String.format("Input image: %s; Output format: %s;",
-                            name, formatExtension),
-                    name,
+                    String.format("Input image: %s;",
+                            inputFile.getName()),
+                    inputFile.getName(),
                     outName,
                     requestInvoker,
                     propertiesTester,

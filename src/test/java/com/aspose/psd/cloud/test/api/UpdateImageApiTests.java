@@ -54,36 +54,14 @@ public class UpdateImageApiTests extends ApiTester {
 
     @Parameters
     public static Iterable<Object[]> data() {
-        if (isExtendedTests()) {
-            return Arrays.asList(new Object[][] {
-                    { ".bmp", true, new String[] {null} }, { ".bmp", false, new String[] {null} },
-                    { ".dicom", true, new String[] {} }, { ".dicom", false, new String[] {} },
-                    /* TODO: enable after IMAGINGCLOUD-51 is resolved
-                    { ".gif", true, new String[] {null} }, { ".gif", false, new String[] {null} },
-                    */
-                    { ".j2k", true, new String[] {null} }, { ".j2k", false, new String[] {null} },
-                    { ".jpg", true, new String[] {null} }, { ".jpg", false, new String[] {null} },
-                    { ".png", true, new String[] {null} }, { ".png", false, new String[] {null} },
-                    { ".psd", true, new String[] {null} }, { ".psd", false, new String[] {null} },
-                    { ".tiff", true, new String[] {null} }, { ".tiff", false, new String[] {null} },
-                    { ".webp", true, new String[] {null} }, { ".webp", false, new String[] {null} }
-            });
-        }
-        else {
-            System.out.println("Extended tests had been disabled");
-            return Arrays.asList(new Object[][] {
-                    { ".jpg", true, new String[] {} }, { ".jpg", false, new String[] {} }
-            });
-        }
+        return Arrays.asList(new Object[][]{ {true, new String[] {null}}, {false, new String[] {null}} });
     }
 
-    private String formatExtension;
     private Boolean saveResultToStorage;
     String[] additionalExportFormats;
 
-    public UpdateImageApiTests(String extension, Boolean saveResult, String[] additionalFormats)
+    public UpdateImageApiTests( Boolean saveResult, String[] additionalFormats)
     {
-        this.formatExtension = extension;
         this.saveResultToStorage = saveResult;
         this.additionalExportFormats = additionalFormats;
     }
@@ -96,13 +74,11 @@ public class UpdateImageApiTests extends ApiTester {
      */
     @Test
     public void updateImageTest() throws Exception {
-        
-        if (saveResultToStorage)
-        {
+
+        if (saveResultToStorage) {
             return;
         }
-        
-        String name = null;
+
         Integer newWidth = 300;
         Integer newHeight = 450;
         Integer x = 10;
@@ -112,46 +88,33 @@ public class UpdateImageApiTests extends ApiTester {
         String rotateFlipMethod = "Rotate90FlipX";
         String folder = getTempFolder();
         String storage = TestStorage;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
-                updateImageRequest = new UpdateImageRequest(name, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, format, folder, storage);
-                
+
+        for (StorageFile inputFile : InputTestFiles) {
+            for (String format : formatsToExport) {
+                updateImageRequest = new UpdateImageRequest(inputFile.getName(), newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, format, folder, storage);
+
                 Method propertiesTester = UpdateImageApiTests.class.getDeclaredMethod("updateImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = UpdateImageApiTests.class.getDeclaredMethod("updateImageGetRequestInvoker", String.class);
                 requestInvoker.setAccessible(true);
                 this.testGetRequest(
-                    "updateImageTest", 
-                    String.format("Input image: %s; Output format: %s; New width: %s; New height: %s; "
-                            + "Rotate/flip method: %s; X: %s; Y: %s; Rect width: %s; Rect height: %s",
-                            name, format, newWidth, newHeight, rotateFlipMethod, x, y, rectWidth, rectHeight),
-                    name,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "updateImageTest",
+                        String.format("Input image: %s; Output format: %s; New width: %s; New height: %s; "
+                                        + "Rotate/flip method: %s; X: %s; Y: %s; Rect width: %s; Rect height: %s",
+                                inputFile.getName(), format, newWidth, newHeight, rotateFlipMethod, x, y, rectWidth, rectHeight),
+                        inputFile.getName(),
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }
@@ -165,7 +128,6 @@ public class UpdateImageApiTests extends ApiTester {
     @Test
     public void createUpdatedImageTest() throws Exception {
         byte[] imageData = null;
-        String name = null;
         String outPath = null;
         Integer newWidth = 300;
         Integer newHeight = 450;
@@ -177,50 +139,38 @@ public class UpdateImageApiTests extends ApiTester {
         String folder = getTempFolder();
         String storage = TestStorage;
         String outName = null;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
+
+        for (StorageFile inputFile : InputTestFiles) {
+
+            for (String format : formatsToExport) {
                 createUpdatedImageRequest = new CreateUpdatedImageRequest(imageData, newWidth, newHeight, x, y, rectWidth, rectHeight,
                         rotateFlipMethod, format, outPath, storage);
-                outName = name + "_update." + format;
-                
+                outName = inputFile.getName() + "_update." + format;
+
                 Method propertiesTester = UpdateImageApiTests.class.getDeclaredMethod("createUpdatedImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = UpdateImageApiTests.class.getDeclaredMethod("createUpdatedImagePostRequestInvoker", byte[].class, String.class);
                 requestInvoker.setAccessible(true);
                 this.testPostRequest(
-                    "createUpdatedImageTest; save result to storage: " + saveResultToStorage,  
-                    saveResultToStorage,
-                    String.format("Input image: %s; Output format: %s; New width: %s; New height: %s; "
-                            + "Rotate/flip method: %s; X: %s; Y: %s; Rect width: %s; Rect height: %s",
-                            name, format, newWidth, newHeight, rotateFlipMethod, x, y, rectWidth, rectHeight),
-                    name,
-                    outName,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "createUpdatedImageTest; save result to storage: " + saveResultToStorage,
+                        saveResultToStorage,
+                        String.format("Input image: %s; Output format: %s; New width: %s; New height: %s; "
+                                        + "Rotate/flip method: %s; X: %s; Y: %s; Rect width: %s; Rect height: %s",
+                                inputFile.getName(), format, newWidth, newHeight, rotateFlipMethod, x, y, rectWidth, rectHeight),
+                        inputFile.getName(),
+                        outName,
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }

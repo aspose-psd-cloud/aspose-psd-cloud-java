@@ -54,36 +54,14 @@ public class ResizeApiTests extends ApiTester {
 
     @Parameters
     public static Iterable<Object[]> data() {
-        if (isExtendedTests()) {
-            return Arrays.asList(new Object[][] {
-                    { ".bmp", true, new String[] {null} }, { ".bmp", false, new String[] {null} },
-                    { ".dicom", true, new String[] {} }, { ".dicom", false, new String[] {} },
-                    /* TODO: enable after IMAGINGCLOUD-51 is resolved
-                    { ".gif", true, new String[] {null} }, { ".gif", false, new String[] {null} },
-                    */
-                    { ".j2k", true, new String[] {null} }, { ".j2k", false, new String[] {null} },
-                    { ".jpg", true, new String[] {null} }, { ".jpg", false, new String[] {null} },
-                    { ".png", true, new String[] {null} }, { ".png", false, new String[] {null} },
-                    { ".psd", true, new String[] {null} }, { ".psd", false, new String[] {null} },
-                    { ".tiff", true, new String[] {null} }, { ".tiff", false, new String[] {null} },
-                    { ".webp", true, new String[] {null} }, { ".webp", false, new String[] {null} }
-            });
-        }
-        else {
-            System.out.println("Extended tests had been disabled");
-            return Arrays.asList(new Object[][] {
-                    { ".jpg", true, new String[] {null} }, { ".jpg", false, new String[] {null} }
-            });
-        }
+        return Arrays.asList(new Object[][]{ {true, new String[] {null}}, {false, new String[] {null}} });
     }
 
-    private String formatExtension;
     private Boolean saveResultToStorage;
     String[] additionalExportFormats;
 
-    public ResizeApiTests(String extension, Boolean saveResult, String[] additionalFormats)
+    public ResizeApiTests(Boolean saveResult, String[] additionalFormats)
     {
-        this.formatExtension = extension;
         this.saveResultToStorage = saveResult;
         this.additionalExportFormats = additionalFormats;
     }
@@ -96,56 +74,41 @@ public class ResizeApiTests extends ApiTester {
      */
     @Test
     public void resizeImageTest() throws Exception {
-        
-        if (saveResultToStorage)
-        {
+
+        if (saveResultToStorage) {
             return;
         }
-        
-        String name = null;
+
         Integer newWidth = 100;
         Integer newHeight = 150;
         String folder = getTempFolder();
         String storage = TestStorage;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
-                resizeImageRequest = new ResizeImageRequest(name, newWidth, newHeight, format, folder, storage);
-                
+
+        for (StorageFile inputFile : InputTestFiles) {
+            for (String format : formatsToExport) {
+                resizeImageRequest = new ResizeImageRequest(inputFile.getName(), newWidth, newHeight, format, folder, storage);
+
                 Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("resizeImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("resizeImageGetRequestInvoker", String.class);
                 requestInvoker.setAccessible(true);
                 this.testGetRequest(
-                    "resizeImageTest; save result to storage: " + saveResultToStorage, 
-                    String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
-                            name, format, newWidth, newHeight),
-                    name,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "resizeImageTest; save result to storage: " + saveResultToStorage,
+                        String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
+                                inputFile.getName(), format, newWidth, newHeight),
+                        inputFile.getName(),
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }
@@ -159,55 +122,41 @@ public class ResizeApiTests extends ApiTester {
     @Test
     public void createResizedImageTest() throws Exception {
         byte[] imageData = null;
-        String name = null;
         Integer newWidth = 100;
         Integer newHeight = 150;
         String outPath = null;
         String folder = getTempFolder();
         String storage = TestStorage;
         String outName = null;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat == null || (!additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
+
+        for (StorageFile inputFile : InputTestFiles) {
+            for (String format : formatsToExport) {
                 createResizedImageRequest = new CreateResizedImageRequest(imageData, newWidth, newHeight, format, outPath, storage);
-                outName = name + "_resize." + format;
-                
+                outName = inputFile.getName() + "_resize." + format;
+
                 Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("createResizedImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("createResizedImagePostRequestInvoker", byte[].class, String.class);
                 requestInvoker.setAccessible(true);
                 this.testPostRequest(
-                    "createResizedImageTest; save result to storage: " + saveResultToStorage,  
-                    saveResultToStorage,
-                    String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
-                            name, format, newWidth, newHeight),
-                    name,
-                    outName,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "createResizedImageTest; save result to storage: " + saveResultToStorage,
+                        saveResultToStorage,
+                        String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
+                                inputFile.getName(), format, newWidth, newHeight),
+                        inputFile.getName(),
+                        outName,
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }

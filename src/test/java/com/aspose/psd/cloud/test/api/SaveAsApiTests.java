@@ -53,36 +53,14 @@ public class SaveAsApiTests extends ApiTester {
 
     @Parameters
     public static Iterable<Object[]> data() {
-        if (isExtendedTests()) {
-            return Arrays.asList(new Object[][] {
-                    { ".bmp", true, new String[] {} }, { ".bmp", false, new String[] {} },
-                    { ".dicom", true, new String[] {} }, { ".dicom", false, new String[] {} },
-                    /* TODO: enable after IMAGINGCLOUD-51 is resolved
-                    { ".gif", true, new String[] {} }, { ".gif", false, new String[] {} },
-                    */
-                    { ".j2k", true, new String[] {} }, { ".j2k", false, new String[] {} },
-                    { ".jpg", true, new String[] {} }, { ".jpg", false, new String[] {} },
-                    { ".png", true, new String[] {} }, { ".png", false, new String[] {} },
-                    { ".psd", true, new String[] {} }, { ".psd", false, new String[] {} },
-                    { ".tiff", true, new String[] {} }, { ".tiff", false, new String[] {} },
-                    { ".webp", true, new String[] {} }, { ".webp", false, new String[] {} }
-            });
-        }
-        else {
-            System.out.println("Extended tests had been disabled");
-            return Arrays.asList(new Object[][] {
-                    { ".jpg", true, new String[] {} }, { ".jpg", false, new String[] {} }
-            });
-        }
+        return Arrays.asList(new Object[][]{ {true, new String[] {null}}, {false, new String[] {null}} });
     }
 
-    private String formatExtension;
     private Boolean saveResultToStorage;
     String[] additionalExportFormats;
 
-    public SaveAsApiTests(String extension, Boolean saveResult, String[] additionalFormats)
+    public SaveAsApiTests(Boolean saveResult, String[] additionalFormats)
     {
-        this.formatExtension = extension;
         this.saveResultToStorage = saveResult;
         this.additionalExportFormats = additionalFormats;
     }
@@ -95,54 +73,39 @@ public class SaveAsApiTests extends ApiTester {
      */
     @Test
     public void saveImageAsTest() throws Exception {
-        
-        if (saveResultToStorage)
-        {
+
+        if (saveResultToStorage) {
             return;
         }
-        
-        String name = null;
+
         String folder = getTempFolder();
         String storage = TestStorage;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat != null && !additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat != null && !additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
-                saveImageAsRequest = new SaveImageAsRequest(name, format, folder, storage);
-                
+
+        for (StorageFile inputFile : InputTestFiles) {
+            for (String format : formatsToExport) {
+                saveImageAsRequest = new SaveImageAsRequest(inputFile.getName(), format, folder, storage);
+
                 Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("saveImageAsPropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("saveImageAsGetRequestInvoker", String.class);
                 requestInvoker.setAccessible(true);
                 this.testGetRequest(
-                    "saveImageAsTest", 
-                    String.format("Input image: %s; Output format: %s",
-                            name, format),
-                    name,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "saveImageAsTest",
+                        String.format("Input image: %s; Output format: %s",
+                                inputFile.getName(), format),
+                        inputFile.getName(),
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }
@@ -156,53 +119,40 @@ public class SaveAsApiTests extends ApiTester {
     @Test
     public void createSavedImageAsTest() throws Exception {
         byte[] imageData = null;
-        String name = null;
         String outPath = null;
         String folder = getTempFolder();
         String storage = TestStorage;
         String outName = null;
-        
+
         ArrayList<String> formatsToExport = new ArrayList<String>();
         Collections.addAll(formatsToExport, this.BasicExportFormats);
-        for (String additionalExportFormat : additionalExportFormats)
-        {
-            if (additionalExportFormat != null && !additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat))
-            {
+        for (String additionalExportFormat : additionalExportFormats) {
+            if (additionalExportFormat != null && !additionalExportFormat.trim().equals("") && !formatsToExport.contains(additionalExportFormat)) {
                 formatsToExport.add(additionalExportFormat);
             }
         }
-        
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-            
-            for (String format : formatsToExport)
-            {
+
+        for (StorageFile inputFile : InputTestFiles) {
+
+            for (String format : formatsToExport) {
                 createSavedImageAsRequest = new CreateSavedImageAsRequest(imageData, format, outPath, storage);
-                outName = name + "." + format;
-                
+                outName = inputFile.getName() + "." + format;
+
                 Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("createSavedImageAsPropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
                 propertiesTester.setAccessible(true);
                 Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("createSavedImageAsPostRequestInvoker", byte[].class, String.class);
                 requestInvoker.setAccessible(true);
                 this.testPostRequest(
-                    "createSavedImageAsTest; save result to storage: " + saveResultToStorage,  
-                    saveResultToStorage,
-                    String.format("Input image: %s; Output format: %s",
-                            name, format),
-                    name,
-                    outName,
-                    requestInvoker,
-                    propertiesTester,
-                    folder,
-                    storage);
+                        "createSavedImageAsTest; save result to storage: " + saveResultToStorage,
+                        saveResultToStorage,
+                        String.format("Input image: %s; Output format: %s",
+                                inputFile.getName(), format),
+                        inputFile.getName(),
+                        outName,
+                        requestInvoker,
+                        propertiesTester,
+                        folder,
+                        storage);
             }
         }
     }

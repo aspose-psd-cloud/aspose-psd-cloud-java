@@ -52,41 +52,19 @@ public class DeskewApiTests extends ApiTester {
 
     @Parameters
     public static Iterable<Object[]> data() {
-        if (isExtendedTests()) {
-            return Arrays.asList(new Object[][] {
-                    { ".bmp", true, true, null }, { ".bmp", false, true, "green"},
-
-                    /* TODO: enable after IMAGINGCLOUD-51 is resolved
-                    { ".gif", true, true, null}, { ".gif", false, true, null},
-                    */
-                    { ".j2k", true, true, null}, { ".j2k", false, true, null},
-                    { ".jpg", true, true, null}, { ".jpg", false, true, null},
-                    { ".png", true, true, null}, { ".png", false, true, null},
-                    { ".psd", true, true, null}, { ".psd", false, true, null},
-                    { ".tiff", true, true, null}, { ".tiff", false, true, null},
-                    { ".webp", true, true, null}, { ".webp", false, true, null}
-                    /*TODO: enable after those formats save is resolved
-                    { ".dicom", true, false, null}, { ".dicom", false, true, null},
-                    { ".dng", true, true, null}, { ".dng", false, true, null},
-                    { ".djvu", true, true, null}, { ".djvu", false, true, null}*/
-            });
-        }
-        else {
-            System.out.println("Extended tests had been disabled");
-            return Arrays.asList(new Object[][] {
-                    { ".jpg", true, true, null }, { ".jpg", false, true, null }
-            });
-        }
+        return Arrays.asList(new Object[][]{
+                {true, true, null},
+                {false, false, null},
+                {false, true, "green"}
+        });
     }
 
-    private String formatExtension;
     private Boolean saveResultToStorage;
     private Boolean resizeProportionally;
     private String bkColor;
 
-    public DeskewApiTests(String extension, Boolean saveResult, Boolean resizeProportionally, String bkColor)
+    public DeskewApiTests(Boolean saveResult, Boolean resizeProportionally, String bkColor)
     {
-        this.formatExtension = extension;
         this.saveResultToStorage = saveResult;
         this.resizeProportionally = resizeProportionally;
         this.bkColor = bkColor;
@@ -100,42 +78,30 @@ public class DeskewApiTests extends ApiTester {
      */
     @Test
     public void deskewImageTest() throws Exception {
-        
-        if (saveResultToStorage)
-        {
+
+        if (saveResultToStorage) {
             return;
         }
 
-        String name = null;
         String folder = getTempFolder();
         String storage = TestStorage;
 
-        for (StorageFile inputFile : InputTestFiles)
-        {
-            if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-
-            deskewImageRequest = new DeskewImageRequest(name, resizeProportionally, bkColor , folder, storage);
+        for (StorageFile inputFile : InputTestFiles) {
+            deskewImageRequest = new DeskewImageRequest(inputFile.getName(), resizeProportionally, bkColor, folder, storage);
 
             Method propertiesTester = DeskewApiTests.class.getDeclaredMethod("deskewImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
             propertiesTester.setAccessible(true);
             Method requestInvoker = DeskewApiTests.class.getDeclaredMethod("deskewImageGetRequestInvoker", String.class);
             requestInvoker.setAccessible(true);
             this.testGetRequest(
-                "deskewImageTest",
-                String.format("Input image: %s; Output format: %s; ResizeProportionally: %s; BkColor: %s;",
-                        name, formatExtension, resizeProportionally, bkColor),
-                name,
-                requestInvoker,
-                propertiesTester,
-                folder,
-                storage);
+                    "deskewImageTest",
+                    String.format("Input image: %s; ResizeProportionally: %s; BkColor: %s;",
+                            inputFile.getName(), resizeProportionally, bkColor),
+                    inputFile.getName(),
+                    requestInvoker,
+                    propertiesTester,
+                    folder,
+                    storage);
         }
     }
     
@@ -148,21 +114,14 @@ public class DeskewApiTests extends ApiTester {
     @Test
     public void createDeskewedImageTest() throws Exception {
         byte[] imageData = null;
-        String name = null;
         String outPath = null;
         String folder = getTempFolder();
         String storage = TestStorage;
         String outName = null;
         
         for (StorageFile inputFile : InputTestFiles) {
-            if (inputFile.getName().endsWith(formatExtension)) {
-                name = inputFile.getName();
-            } else {
-                continue;
-            }
-
             createDeskewedImageRequest = new CreateDeskewedImageRequest(imageData, resizeProportionally, bkColor, outPath, storage);
-            outName = name + "_deskew" + formatExtension;
+            outName = inputFile.getName() + "_deskew.psd";
 
             Method propertiesTester = DeskewApiTests.class.getDeclaredMethod("createDeskewedImagePropertiesTester", ImagingResponse.class, ImagingResponse.class, byte[].class);
             propertiesTester.setAccessible(true);
@@ -171,9 +130,9 @@ public class DeskewApiTests extends ApiTester {
             this.testPostRequest(
                     "createDeskewedImageTest; save result to storage: " + saveResultToStorage,
                     saveResultToStorage,
-                    String.format("Input image: %s; Output format: %s; ResizeProportionally: %s; BkColor: %s;",
-                            name, formatExtension, resizeProportionally, bkColor),
-                    name,
+                    String.format("Input image: %s; esizeProportionally: %s; BkColor: %s;",
+                            inputFile.getName(), resizeProportionally, bkColor),
+                    inputFile.getName(),
                     outName,
                     requestInvoker,
                     propertiesTester,
