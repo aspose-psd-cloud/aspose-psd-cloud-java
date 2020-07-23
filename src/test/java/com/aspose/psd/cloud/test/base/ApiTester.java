@@ -65,7 +65,7 @@ public abstract class ApiTester
     /**
      * Original data folder.
      */
-    protected final static String OriginalDataFolder = "ImagingIntegrationTestData";
+    protected final static String OriginalDataFolder = "PsdIntegrationTestData";
     
     /**
      * If program runs in Android environment
