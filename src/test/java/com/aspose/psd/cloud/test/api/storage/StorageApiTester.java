@@ -40,7 +40,7 @@ public class StorageApiTester extends ApiTester {
 
     protected final static String OriginalDataFolder = ApiTester.OriginalDataFolder + "/Storage";
 
-    protected final static String CloudTestFolderPrefix = "ImagingStorageCloudTestDotNet";
+    protected final static String CloudTestFolderPrefix = "PsdStorageCloudTestDotNet";
     
     protected StorageFile getFileWithName(List<StorageFile> files, String name) {
         StorageFile result = null;
