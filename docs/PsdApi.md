@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
  **y** | **Integer**| Y position of start point for cropping rectangle. |
  **width** | **Integer**| Width of cropping rectangle. |
  **height** | **Integer**| Height of cropping rectangle. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
  **imageData** | **byte[]**| Input image |
  **newWidth** | **Integer**| New width. |
  **newHeight** | **Integer**| New height. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **imageData** | **byte[]**| Input image |
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -286,7 +286,7 @@ CreateSavedImageAsRequest(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **imageData** | **byte[]**| Input image |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. |
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. |
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
  **rectWidth** | **Integer**| Width of cropping rectangle. |
  **rectHeight** | **Integer**| Height of cropping rectangle. |
  **rotateFlipMethod** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed image). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
  **y** | **Integer**| Y position of start point for cropping rectangle. |
  **width** | **Integer**| Width of cropping rectangle |
  **height** | **Integer**| Height of cropping rectangle. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Filename of an image. |
  **filterType** | **String**| Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing). |
  **filterProperties** | [**FilterPropertiesBase**](FilterPropertiesBase.md)| Filter properties. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -796,7 +796,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Filename of an image. |
  **newWidth** | **Integer**| New width. |
  **newHeight** | **Integer**| New height. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -826,7 +826,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an image. |
  **method** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -854,7 +854,7 @@ SaveImageAsRequest(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of image. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. |
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. |
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
@@ -918,7 +918,7 @@ Name | Type | Description  | Notes
  **rectWidth** | **Integer**| Width of cropping rectangle. |
  **rectHeight** | **Integer**| Height of cropping rectangle. |
  **rotateFlipMethod** | **String**| RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. |
- **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
+ **format** | **String**| Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
  **folder** | **String**| Folder with image to process. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 

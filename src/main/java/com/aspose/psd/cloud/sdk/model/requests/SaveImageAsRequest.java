@@ -37,7 +37,7 @@ public class SaveImageAsRequest
     /**
     * Initializes a new instance of the SaveImageAsRequest class.   
     * @param name Filename of image.
-    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     * @param folder Folder with image to process.
     * @param storage Your Aspose Cloud Storage name.
     **/
@@ -55,7 +55,7 @@ public class SaveImageAsRequest
     public String name;
 
     /**
-    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/psd/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     **/
     public String format;
 
