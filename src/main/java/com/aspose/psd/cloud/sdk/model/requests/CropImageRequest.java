@@ -41,7 +41,7 @@ public class CropImageRequest
     * @param y Y position of start point for cropping rectangle.
     * @param width Width of cropping rectangle
     * @param height Height of cropping rectangle.
-    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     * @param folder Folder with image to process.
     * @param storage Your Aspose Cloud Storage name.
     **/
@@ -83,7 +83,7 @@ public class CropImageRequest
     public Integer height;
 
     /**
-    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     **/
     public String format;
 

@@ -39,7 +39,7 @@ public class FilterEffectImageRequest
     * @param name Filename of an image.
     * @param filterType Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
     * @param filterProperties Filter properties.
-    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * @param format Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     * @param folder Folder with image to process.
     * @param storage Your Aspose Cloud Storage name.
     **/
@@ -69,7 +69,7 @@ public class FilterEffectImageRequest
     public FilterPropertiesBase filterProperties;
 
     /**
-    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+    * Resulting image format. Please, refer to https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
     **/
     public String format;
 
