@@ -1,63 +1,20 @@
-# Aspose.Imaging Cloud Java SDK
-[Aspose.Imaging Cloud](https://products.aspose.cloud/imaging) is a true [REST API](https://apireference.aspose.cloud/imaging/) that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
+# Aspose.PSD Cloud Java SDK
+[Aspose.PSD Cloud](https://products.aspose.cloud/psd) is a true [REST API](https://apireference.aspose.cloud/psd/) that enables you to perform a wide range of PSD image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in the language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
 
-This repository contains [Aspose.Imaging Cloud Java SDK](https://products.aspose.cloud/imaging/java) source code. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Java applications quickly and easily, with zero initial cost.
+This repository contains [Aspose.PSD Cloud Java SDK](https://products.aspose.cloud/psd/java) source code. This SDK allows you to work with Aspose.PSD Cloud REST APIs in your Java applications quickly and easily, with zero initial cost.
 
 To use this SDK, you will need App SID and App Key which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
 
 ## Key Features
-#### Image Formats Support
-Export the following images to various formats (generally supported ones are BMP, PSD, JPEG, TIFF, GIF, PNG, JPEG2000, WEBP and PDF):
-* BMP
-* GIF
-* DJVU
-* WMF
-* EMF
-* JPEG
-* JPEG2000
-* PSD
-* TIFF
-* WEBP
-* PNG
-* DICOM
-* CDR
-* ODG
-* OTG
-* DNG
-* SVG
-* CMX
-
-Process options, change and return images in the same format:
-* PSD
-* JPEG
-* TIFF
-* GIF
-* BMP
-* JPEG2000
-* WEBP
-
-Process options, change and return images in any supported export format:
-* EMF
-* WMF
-
-#### Supported Imaging Operations
-* Export 
+#### Supported Operations
+* Export
 * Resize
 * Crop
 * Rotate and Flip
-* TIFF frames extraction
-* TIFF frames manipulation
-* TIFF concatenation
-* TIFF conversion to fax-friendly format
+* Deskew
+* Grayscale
+* Apply filtering effect
 * Retrieve & update image properties
-* Conversion to and from PSD format
-
-#### Supported Imaging AI Operations
-* Content-based image search
-* Image duplicates search
-* Image search by custom registered tags
-* Image comparison and similarity detection
-* Image features extraction (for now, AKAZE detector is supported)
 
 For the complete list of use-cases, please refer to the [format support document](https://docs.aspose.cloud/display/psdcloud/Supported+File+Formats) to see what you can achieve!
 
@@ -67,15 +24,14 @@ Since version 19.4, SDK includes support of storage operations for better user e
 It gives you an ability to:
 * Upload, download, copy, move and delete files, including versions handling (if you are using Cloud storage that supports this feature - true by default)
 * Create, copy, move and delete folders
-* Copy and move files and folders accross separate storages in scope of a single operation
+* Copy and move files and folders across separate storages in the scope of a single operation
 * Check if certain file, folder or storage exists
 
-Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/display/psdcloud).
+Detailed official documentation can be found at the [following link](https://docs.aspose.cloud/display/psdcloud).
 
 ## Getting Started
-1. **Sign Up**. Before you begin, you need to sign up for an account on our [Dashboard](https://dashboard.aspose.cloud/) and retrieve your [credentials](https://dashboard.aspose.cloud/#/apps).
 2. **Minimum requirements**. This SDK requires [Java 1.6 or later](https://java.com/download/).
-3. **Add Aspose.Imaging Cloud Java SDK to your project**. 
+3. **Add Aspose.PSD Cloud Java SDK to your project**. 
 
 Add Aspose Cloud repository to your pom.xml.
 ```xml
@@ -101,12 +57,12 @@ Add Aspose Cloud repository to your pom.xml.
     </profile>
 </profiles>
 ```
-Add Aspose.Imaging Cloud Java SDK as a dependency.
+Add Aspose.PSD Cloud Java SDK as a dependency.
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.aspose</groupId>
-        <artifactId>aspose-imaging-cloud</artifactId>
+        <artifactId>aspose-psd-cloud</artifactId>
         <version>20.4</version>
     </dependency>
 </dependencies>
@@ -123,7 +79,7 @@ The details about key differences and deployment process will be described on th
 To succeed with your on-premise service usage by the SDK, you need to:
 1. Use the new API class constructors with either single base URL parameter, or additional API version and debug mode parameters.
 ```java
-ImagingApi imagingApi = new ImagingApi("yourServiceUrl");
+PsdApi psdApi = new PsdApi("yourServiceUrl");
 ```
 2. Set *storage* or *storageName* parameters for each request where they're present (mandatory!).
 
@@ -134,22 +90,22 @@ You may check our full [API endpoints list](docs/API_README.md#documentation-for
 * [Java 1.6 or later](https://java.com/download/)
 
 ## Licensing
-All Aspose.Imaging Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).
+All Aspose.PSD Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact via
-+ [**Free Support Forum**](https://forum.aspose.cloud/c/imaging)
++ [**Free Support Forum**](https://forum.aspose.cloud/c/psd)
 + [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
 
 ## Resources
-+ [**Web API reference**](https://apireference.aspose.cloud/imaging/)
++ [**Web API reference**](https://apireference.aspose.cloud/psd/)
 + [**Website**](https://www.aspose.cloud)
-+ [**Product Home**](https://products.aspose.cloud/imaging)
++ [**Product Home**](https://products.aspose.cloud/psd)
 + [**Documentation**](https://docs.aspose.cloud/display/psdcloud/Home)
-+ [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.imaging-cloud/)
++ [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.psd-cloud/)
 
 ## Other languages
-We generate our SDKs in different languages so you may check if yours is available in our [repository](https://github.com/aspose-imaging-cloud). If you don't find your language in the list, feel free to request it from us, or use raw REST API requests as you can find it [here](https://products.aspose.cloud/imaging/curl).
+We generate our SDKs in different languages so you may check if yours is available in our [repository](https://github.com/aspose-psd-cloud). If you don't find your language in the list, feel free to request it from us, or use raw REST API requests as you can find it [here](https://products.aspose.cloud/psd/curl).
 
 ## Code generator
-The solution is updated using [code generator](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-codegen).
+The solution is updated using [code generator](https://github.com/aspose-psd-cloud/aspose-psd-cloud-codegen).
