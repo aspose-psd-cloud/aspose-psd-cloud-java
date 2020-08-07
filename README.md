@@ -63,7 +63,7 @@ Add Aspose.PSD Cloud Java SDK as a dependency.
     <dependency>
         <groupId>com.aspose</groupId>
         <artifactId>aspose-psd-cloud</artifactId>
-        <version>20.4</version>
+        <version>20.8</version>
     </dependency>
 </dependencies>
 ```
