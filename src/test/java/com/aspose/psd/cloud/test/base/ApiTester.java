@@ -646,12 +646,12 @@ public abstract class ApiTester
                             String.format("Result file %s doesn't exist in the specified storage folder: %s. Result isn't present in the storage by an unknown reason.",
                                     resultFileName, folder));
                 }
-                if (!resultFileName.endsWith(".pdf")) {
+                if (resultFileName.endsWith(".psd") || resultFileName.endsWith(".psb")) {
                     resultProperties = PsdApi.getImageProperties(new GetImagePropertiesRequest(resultFileName, folder, storage));
                     Assert.assertNotNull(resultProperties);
                 }
             }
-            else if (!(new Tika().detect(response).equals("application/pdf")))
+            else if ((new Tika().detect(response).equals("image/vnd.adobe.photoshop")))
             {
                 resultProperties =
                         PsdApi.extractImageProperties(new ExtractImagePropertiesRequest(response));
